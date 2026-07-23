@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Portal Web de Gestión de Declaración de Renta para Contribuyentes y Contador Público">
+  
+  <!-- PWA Meta Tags for Android & iOS -->
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TaxPortal">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+
+  <title>Portal Declaración de Renta | DIAN 2026</title>
+  
+  <!-- Cache Control Meta Tags -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/main.css?v=20260723_v4">
+  <link rel="stylesheet" href="css/components.css?v=20260723_v4">
+  <link rel="stylesheet" href="css/views.css?v=20260723_v4">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const pdfBtn = document.getElementById('nav-tab-pdf');
+      if (pdfBtn) pdfBtn.remove();
+      const pdfHeroBtn = document.getElementById('btn-open-pdf-studio-hero');
+      if (pdfHeroBtn) pdfHeroBtn.remove();
+    });
+  </script>
+</head>
+<body>
+
+  <!-- PWA Install Banner for Mobile Users -->
+  <div id="pwa-install-banner" class="pwa-banner hidden">
+    <div class="flex items-center gap-3">
+      <div style="font-size: 1.5rem;">📲</div>
+      <div>
+        <div style="font-weight: 700; font-size: 0.85rem;">Instalar Aplicación Móvil</div>
+        <div class="text-xs" style="color: var(--text-muted);">Accede más rápido desde la pantalla de inicio de tu celular</div>
+      </div>
+    </div>
+    <div class="flex gap-2">
+      <button id="btn-pwa-dismiss" class="btn btn-secondary text-xs">Ahora no</button>
+      <button id="btn-pwa-install" class="btn btn-emerald text-xs font-bold">Instalar App</button>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="app-navbar">
+    <div class="flex items-center gap-6">
+      <div class="brand" id="nav-brand-home" style="cursor: pointer;">
+        <div class="brand-logo">⚜️</div>
+        <div class="brand-text">
+          <h1>TaxPortal DIAN</h1>
+          <span>Gestión de Declaración de Renta</span>
+        </div>
+      </div>
+
+      <div class="nav-menu flex items-center gap-2">
+        <button id="nav-tab-home" class="btn btn-secondary text-xs active" style="padding: 0.4rem 0.85rem; min-height: 36px;">
+          🏠 Inicio
+        </button>
+      </div>
+    </div>
+    
+    <div id="nav-user-section">
+      <!-- User profile badge or login button -->
+    </div>
+  </nav>
+
+  <!-- Main View Render Area -->
+  <main id="main-app-content" class="app-container">
+    <!-- Rendered dynamically by app.js (Login, Client Portal, or Admin Portal) -->
+  </main>
+
+  <!-- Global Modal Overlay -->
+  <div id="app-modal-overlay" class="modal-overlay">
+    <div id="app-modal-box" class="modal-box">
+      <!-- Modal Content Injected Dynamically -->
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="app-toast-container" class="toast-container"></div>
+
+  <!-- Force Clear Cache & Service Worker Update -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+    if ('caches' in window) {
+      caches.keys().then(function(names) {
+        for (let name of names) caches.delete(name);
+      });
+    }
+  </script>
+
+  <!-- Main JavaScript Modules -->
+  <script type="module" src="js/app.js?v=20260723_v3"></script>
+</body>
+</html>
